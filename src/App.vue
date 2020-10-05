@@ -1,28 +1,53 @@
 <template>
-  <div id="view">
+  <div class="bg-gray-200 flex flex-col h-screen">
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap" rel="stylesheet">
-    <div id="title">
-      <h3>Vue ToDo</h3>
+
+    <!-- Display logo -->
+    <div class="flex items-center justify-center p-4 text-xl">
+      <span>📃 Vue TODO</span>
     </div>
-    <div id="tasks">
-      <Task />
+
+    <!-- Task add input -->
+    <div class="flex items-center justify-center p-4">
+      <AddTask @added="addTask"/>
+    </div>
+
+    <!-- Display tasks -->
+    <div class="flex items-center justify-center p-4">
+      <ul>
+        <li v-for="task in taskList" :key="task">
+          <input type="checkbox">
+          <label for="checkbox"> {{ task }}</label>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import Task from './components/Task.vue'
+import AddTask from '@/components/AddTask.vue'
 
 export default {
   name: 'App',
-  components: {
-    Task
+  
+  components: { AddTask },
+
+  data() {
+    return {
+      taskList: []
+    }
+  },
+
+  methods: {
+    addTask(task) {
+      this.taskList.push(task)
+    }
   }
 }
 </script>
 
 <style>
-* {
+p {
   font-family: 'Mukta', sans-serif;
 }
 </style>
