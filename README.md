@@ -5,7 +5,7 @@
 npm install
 ```
 
-### Run application
+## Run application
 ```
 npm run electron:serve
 ```
